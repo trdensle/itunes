@@ -13,10 +13,19 @@ app.controller('mainCtrl', function($scope, itunesService){
         {field: 'Artist', displayName: 'Artist'},
         {field: 'Collection', displayName: 'Collection'},
         {field: 'AlbumArt', displayName: 'Album Art', width: '110px', cellTemplate: '<div class="ngCellText" ng-class="col.colIndex()"><img src="{{row.getProperty(col.field)}}"></div>'},
-        {field: 'Type', displayName: 'Type'},
+        // {field: 'Type', displayName: 'Type'},
         {field: 'CollectionPrice', displayName: 'Collection Price'},
       ]
   };
+
+  $scope.getSongData = function(artist) {
+    itunesService.getArtist($scope.artist)
+    .then(function(data){
+      $scope.songData = data;
+      console.log(data)
+    })
+  }
+
 
   //Our controller is what's going to connect our 'heavy lifting' itunesService with our view (index.html) so our user can see the results they get back from itunes.
 
